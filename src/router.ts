@@ -7,24 +7,24 @@ const router = createRouter({
   routes: [
     { path: "/", redirect: "/hello" },
     {
-      path: "/hello",
-      name: "hello",
-      component: HelloWorld,
+        path: "/hello",
+        name: "hello",
+        component: HelloWorld,
     },
     {
         path: "/one",
-        name: "one",
+        name: "a",
         component: () => import(/* webpackChunkName: "one" */"@/One.vue"),
-      },
-      {
+    },
+    {
         path: "/two",
         name: "two",
         component: Two,
-      },
-        {
-      path: "/:pathMatch(.*)",
-      name: "not-found",
-      redirect: "/hello",
+    },
+    {
+        path: "/:pathMatch(.*)",
+        name: "not-found",
+        redirect: "/hello",
     },
   ],
 })
