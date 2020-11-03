@@ -5,12 +5,11 @@
 <script lang="ts">
 import HelloWorld from './components/HelloWorld.vue';
 
-export default ({
-    name: 'One',
+export default {
     components: {
-        HelloWorld
+        HelloWorld,
     },
-});
+};
 </script>
 
 <style>
