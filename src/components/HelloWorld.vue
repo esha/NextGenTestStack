@@ -1,29 +1,32 @@
 <template>
 <div class="hello">
     <h1>{{ msg || 'Hello' }}</h1>
-    <h3 @click="increment">Count: {{ counter }}</h3>
+    <h3 :class="isOdd ? 'odd' : 'even'">
+        Counter:
+        <button @click="lower">&lt;</button>
+        {{ count }}
+        <button @click="raise">&gt;</button>
+    </h3>
 </div>
 </template>
 
 <script lang="ts">
+//import { useStore } from 'vuex'
+import { computed } from 'vue'
 import store from "@/store"
 
 export default {
-    name: 'HelloWorld',
     props: {
         msg: String,
     },
-    methods: {
-        increment() {
-            store.commit("increment")
-            console.log(store.getters.counter)
-        }
-    },
     setup() {
         return {
-            counter: store.getters.counter
+            raise: () => store.dispatch("raise"),
+            lower: () => store.dispatch("lower"),
+            isOdd: computed(() => store.getters.isOdd),
+            count: computed(() => store.state.count)
         }
-    }
+    },
 };
 </script>
 
@@ -35,5 +38,11 @@ h1 {
 }
 h3 {
     color: white;
+}
+.odd {
+    color: white;
+}
+.even {
+    color: black;
 }
 </style>
