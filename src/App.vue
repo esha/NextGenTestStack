@@ -1,7 +1,7 @@
 <template>
     <p>
-        <router-link to="/one">One</router-link>
-        <router-link to="/two">Two</router-link>
+        <router-link :to="{ name: 'a' }">One</router-link>
+        <router-link to="two">Two</router-link>
     </p>
     <router-view/>
 </template>
