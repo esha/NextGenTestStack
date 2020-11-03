@@ -1,5 +1,6 @@
 import { resolveComponent } from 'vue'
 import { createStore } from "vuex"
+import oidc from "@/store.oidc"
 
 export default createStore({
     state: {
@@ -24,5 +25,8 @@ export default createStore({
                 setTimeout(() => resolve(commit('decrement')), 500)
             })
         },
+    },
+    modules: {
+        oidc
     }
 })

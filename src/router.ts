@@ -1,11 +1,20 @@
 import { createWebHistory, createRouter } from "vue-router"
 import HelloWorld from "./components/HelloWorld.vue"
+import OidcCallback from "./components/OidcCallback.vue"
+import { vuexOidcCreateRouterMiddleware } from "vuex-oidc"
+import store from "@/store"
 import Two from "@/Two.vue"
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: "/", redirect: "/hello" },
+    {
+        path: "/signin-oidc",
+        name: "oidcCallback",
+        component: OidcCallback,
+    },
+    { path: "/signout-callback-oidc", redirect: "/" },
     {
         path: "/hello",
         name: "hello",
@@ -28,5 +37,6 @@ const router = createRouter({
     },
   ],
 })
+router.beforeEach(vuexOidcCreateRouterMiddleware(store))
 
 export default router
