@@ -1,18 +1,18 @@
 <template>
-<HelloWorld msg="Testing" />
+    <p>
+        <router-link to="/one">One</router-link>
+        <router-link to="/two">Two</router-link>
+    </p>
+    <router-view/>
 </template>
 
 <script lang="ts">
 import {
     onMounted
 } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
 import TestComposition from './components/TestComposition';
 export default ({
     name: 'App',
-    components: {
-        HelloWorld
-    },
     setup() {
         const {
             count,
@@ -45,7 +45,17 @@ export default ({
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    background-color: blue;
+    background-color: gray;
     margin-top: 60px;
+}
+a {
+    color: black;
+    padding: 0.5em;
+    display: inline-block;
+    border: 1px dotted black;
+    margin: 0.5em;
+}
+.router-link-active {
+    font-weight: bold;
 }
 </style>
