@@ -11,8 +11,7 @@ import {
     onMounted
 } from 'vue';
 import TestComposition from './components/TestComposition';
-export default ({
-    name: 'App',
+export default {
     setup() {
         const {
             count,
@@ -36,7 +35,7 @@ export default ({
             increment
         }
     }
-});
+};
 </script>
 
 <style>
