@@ -1,6 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router"
 import HelloWorld from "./components/HelloWorld.vue"
-import One from "@/One.vue"
 import Two from "@/Two.vue"
 
 const router = createRouter({
@@ -15,7 +14,7 @@ const router = createRouter({
     {
         path: "/one",
         name: "one",
-        component: One,
+        component: () => import(/* webpackChunkName: "one" */"@/One.vue"),
       },
       {
         path: "/two",
