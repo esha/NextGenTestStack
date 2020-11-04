@@ -1,5 +1,6 @@
 <template>
-<HelloWorld msg="View One" />
+    <font-awesome icon="flag"></font-awesome>
+    <HelloWorld msg="View One" />
 </template>
 
 <script lang="ts">
