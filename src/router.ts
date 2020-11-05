@@ -16,7 +16,7 @@ const router = createRouter({
     },
     { path: "/signout-callback-oidc", redirect: "/" },
     {
-      path: "/hello",
+      path: "/:message",
       name: "hello",
       component: HelloWorld,
     },
@@ -31,7 +31,7 @@ const router = createRouter({
       component: Two,
     },
     {
-      path: "/:pathMatch(.*)",
+      path: "/random/:path",
       name: "not-found",
       redirect: "/hello",
     },
