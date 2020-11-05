@@ -1,12 +1,12 @@
 <template>
-<p> {{ msg }} </p>
+  <p>{{ msg }}</p>
 </template>
 
 <script>
 export default {
-    name: 'TestComp',
-    props: {
-        msg: String
-    }
+  name: "TestComp",
+  props: {
+    msg: String,
+  },
 }
 </script>

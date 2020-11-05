@@ -1,4 +1,3 @@
-
 const originUrl = window.location.origin + "/"
 
 export const oidcConfig = {
