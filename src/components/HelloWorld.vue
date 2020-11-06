@@ -27,7 +27,7 @@ export default {
       lower: () => store.dispatch("lower"),
       isOdd: computed(() => store.getters.isOdd),
       count: computed(() => store.state.count),
-      message: route.params.message,
+      message: route?.params.message,
     }
   },
 }

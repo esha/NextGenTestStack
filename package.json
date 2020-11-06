@@ -5,8 +5,10 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "all": "vue-cli-service lint && vue-cli-service build && vue-cli-service serve"
+    "all": "npm run lint && npm run test && npm run build && npm run serve",
+    "test": "vue-cli-service test:unit"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -20,24 +22,29 @@
     "vuex-oidc": "^3.10.1"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.15",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
+    "@vue/cli-plugin-babel": "^4.5.8",
     "@vue/cli-plugin-eslint": "~4.5.8",
     "@vue/cli-plugin-pwa": "~4.5.8",
     "@vue/cli-plugin-router": "~4.5.8",
     "@vue/cli-plugin-typescript": "^4.5.8",
-    "@vue/cli-plugin-unit-jest": "~4.5.8",
+    "@vue/cli-plugin-unit-jest": "^4.5.8",
     "@vue/cli-plugin-vuex": "~4.5.8",
     "@vue/cli-service": "~4.5.8",
     "@vue/compiler-sfc": "^3.0.2",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
+    "@vue/test-utils": "^2.0.0-beta.8",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^7.0.0-0",
+    "jest": "^26.6.3",
     "prettier": "^1.19.1",
-    "typescript": "~3.9.3"
+    "typescript": "~3.9.3",
+    "vue-jest": "^5.0.0-alpha.5"
   },
   "eslintConfig": {
     "root": true,
@@ -52,7 +59,18 @@
     "parserOptions": {
       "parser": "@typescript-eslint/parser"
     },
-    "rules": {}
+    "rules": {},
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "browserslist": [
     "> 1%",
