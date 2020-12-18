@@ -1,9 +1,9 @@
 import { createWebHistory, createRouter } from "vue-router"
 import HelloWorld from "./components/HelloWorld.vue"
 import OidcCallback from "./components/OidcCallback.vue"
-import { vuexOidcCreateRouterMiddleware } from "vuex-oidc"
-import store from "@/store"
 import Two from "@/Two.vue"
+import { mgr as oidcMgr } from "@/store.oidc"
+import store from "store2"
 
 const router = createRouter({
   history: createWebHistory(),
@@ -13,6 +13,7 @@ const router = createRouter({
       path: "/signin-oidc",
       name: "oidcCallback",
       component: OidcCallback,
+      meta: { isPublic: true },
     },
     { path: "/signout-callback-oidc", redirect: "/" },
     {
@@ -37,6 +38,21 @@ const router = createRouter({
     },
   ],
 })
-router.beforeEach(vuexOidcCreateRouterMiddleware(store))
+
+// this will route to the oidcCallback if there is no user token present on the manager
+router.beforeEach((to, from, next) => {
+  console.log("to", to)
+  console.log("from", from)
+  oidcMgr.getUser().then(user => {
+    if ((user && !user.expired) || to.meta.isPublic) {
+      // user is authorized to navigate
+      next()
+    } else {
+      // not logged in and not public - redirect to oidcCallback
+      store("userDestination", to.name)
+      next({ name: "oidcCallback" })
+    }
+  })
+})
 
 export default router
