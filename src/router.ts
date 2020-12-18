@@ -41,8 +41,6 @@ const router = createRouter({
 
 // this will route to the oidcCallback if there is no user token present on the manager
 router.beforeEach((to, from, next) => {
-  console.log("to", to)
-  console.log("from", from)
   oidcMgr.getUser().then(user => {
     if ((user && !user.expired) || to.meta.isPublic) {
       // user is authorized to navigate
