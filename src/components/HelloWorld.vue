@@ -11,22 +11,21 @@
 </template>
 
 <script lang="ts">
-//import { useStore } from 'vuex'
 import { computed } from "vue"
-import store from "@/store"
 import { useRoute } from "vue-router"
 
 export default {
   props: {
     msg: String,
+    count: Number,
   },
-  setup() {
+  emits: ["increment", "decrement"],
+  setup(props: any, context: any) {
     const route = useRoute()
     return {
-      raise: () => store.dispatch("raise"),
-      lower: () => store.dispatch("lower"),
-      isOdd: computed(() => store.getters.isOdd),
-      count: computed(() => store.state.count),
+      raise: () => context.emit("increment"),
+      lower: () => context.emit("decrement"),
+      isOdd: computed(() => props.count % 2 != 0),
       message: route?.params.message,
     }
   },

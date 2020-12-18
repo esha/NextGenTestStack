@@ -46,7 +46,7 @@
     </div>
   </nav>
   <p></p>
-  <router-view />
+  <router-view @increment="increment()" @decrement="decrement()" :count="count" />
 </template>
 
 <script lang="ts">
@@ -54,7 +54,7 @@ import { onMounted } from "vue"
 import TestComposition from "./components/TestComposition"
 export default {
   setup() {
-    const { count, double, increment } = TestComposition()
+    const { count, double, increment, decrement } = TestComposition()
 
     function testFunc() {
       increment()
@@ -70,6 +70,7 @@ export default {
       count,
       double,
       increment,
+      decrement,
     }
   },
 }
